@@ -5,38 +5,37 @@ import TaskList from './components/TaskList';
 import TaskFilter from './components/TaskFilter';
 import categories from './components/assets/categories';
 
-import './App.css'
-
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
 
   // Function to add a new task
   const handleAddTask = (taskData: Omit<Task, 'id'>) => {
     const dueDate = new Date(taskData.dueDate);
-    dueDate.setHours(24); // Adjust dueDate to start of day in local time zone
+    dueDate.setHours(24);
 
     const newTask: Task = {
-      id: new Date().getTime(), // Unique timestamp-based ID
+      id: new Date().getTime(),
       ...taskData,
-      dueDate, // Set dueDate separately
+      dueDate,
     };
 
     setTasks([...tasks, newTask]);
+    setFilteredTasks([...tasks, newTask]);
   };
 
   // Function to delete a task by ID
   const handleDeleteTask = (taskId: number) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+    setFilteredTasks(updatedTasks);
   };
 
   // Function to filter tasks by category
   const handleCategoryFilter = (selectedCategory: string) => {
-    // If the selected category is empty (All Categories), display all tasks
     if (selectedCategory === '') {
       setFilteredTasks(tasks);
     } else {
-      // Filter tasks by the selected category
       const filteredTasks = tasks.filter((task) => task.category === selectedCategory);
       setFilteredTasks(filteredTasks);
     }

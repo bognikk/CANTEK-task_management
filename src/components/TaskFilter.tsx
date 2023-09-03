@@ -1,13 +1,13 @@
-// TaskFilter.tsx
 import React, { ChangeEvent } from 'react';
+
+import './TaskFilter.scss';
 
 interface TaskFilterProps {
   onSelectCategory: (category: string) => void;
-  categories: readonly [string, string, string]; // Declare categories as a readonly tuple
+  categories: readonly [string, string, string];
 }
 
 const TaskFilter: React.FC<TaskFilterProps> = ({ onSelectCategory, categories }) => {
-  // Convert readonly tuple to a mutable array using the spread operator
   const categoriesArray = [...categories];
 
   const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -16,7 +16,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onSelectCategory, categories })
   };
 
   return (
-    <div>
+    <div className="task-filter">
       <label htmlFor="categoryFilter">Filter by Category:</label>
       <select id="categoryFilter" onChange={handleCategoryChange}>
         <option value="">All Categories</option>

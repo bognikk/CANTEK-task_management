@@ -1,8 +1,10 @@
-// TaskForm.tsx
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
+
 import categories from './assets/categories';
+
+import './TaskForm.scss';
 
 const schema = z.object({
   title: z.string().min(3).max(50),
@@ -25,7 +27,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
+    <form className="task-form" onSubmit={handleSubmit(handleFormSubmit)}>
       <div>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" {...register('title', { required: true })} />

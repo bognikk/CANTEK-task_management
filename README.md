@@ -1,4 +1,4 @@
-# Management App
+# Task Management App
 
 Task Management App is a tool that allows users to add,
 view, and delete tasks. Each task have a title, a due date, and a category. This project is

@@ -1,22 +1,17 @@
 import { useState } from 'react';
+import Task from './components/assets/Task';
+import TaskForm from './components/TaskForm';
+
 import './App.css'
 
-interface Task {
-  id: number;
-  title: string;
-  dueDate: Date;
-  category: string;
-}
-
 function App() {
-
   const [tasks, setTasks] = useState<Task[]>([]);
 
   return (
     <>
-      <div>
-        Start
-      </div>
+      <TaskForm onSubmit={function (data: { title: string; dueDate: Date; category: 'Work' | 'Personal' | 'School'; }): void {
+        throw new Error('Function not implemented.');
+      }} />
 
     </>
   )
